@@ -1,8 +1,8 @@
 {
-  "name": "goit-react-hw-04-phonebook",
+  "name": "goit-react-hw-06-phonebook",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Kaplunivska.github.io/goit-react-hw-04-phonebook/",
+  "homepage": "https://Kaplunivska.github.io/goit-react-hw-06-phonebook/",
   "dependencies": {
     "@hookform/resolvers": "^2.9.10",
     "@styled-system/prop-types": "^5.1.5",
