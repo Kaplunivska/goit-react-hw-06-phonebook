@@ -1,27 +1,38 @@
 import { SubHeader } from 'components/Typography';
 import { RiDeleteBack2Line } from 'react-icons/ri';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   StyledContactList,
   StyledContactListButton,
   StyledContactListItem,
 } from './ContactList.styled';
-import { ContactListPropTypes } from './ContactList.type';
+import { removeContact } from 'redux/contacts.slice';
 
-export default function ContactList({ contacts, onDelete }) {
+const getFilteredContacts = (contacts, filterStr) =>
+  filterStr.length === 0
+    ? contacts
+    : contacts.filter(({ name }) => name.toLowerCase().includes(filterStr));
+
+export default function ContactList() {
+  const { contacts, filter } = useSelector(state => state.contacts);
+  const dispatch = useDispatch();
+  const filtredContacts = getFilteredContacts(contacts, filter);
+
   if (contacts.length === 0) {
     return <SubHeader mt={3}>The contact list is empty</SubHeader>;
   }
 
   return (
     <StyledContactList mt={3}>
-      {contacts.map(({ id, name, number }) => (
+      {filtredContacts.map(({ id, name, number }) => (
         <StyledContactListItem key={id}>
           {name}: {number}
           <StyledContactListButton
             type="button"
             onClick={() => {
-              onDelete(id);
+              dispatch(removeContact({ id }));
             }}
+            aria-label="delete contact button"
           >
             <RiDeleteBack2Line fill="red" />
           </StyledContactListButton>
@@ -30,5 +41,3 @@ export default function ContactList({ contacts, onDelete }) {
     </StyledContactList>
   );
 }
-
-ContactList.propTypes = ContactListPropTypes;

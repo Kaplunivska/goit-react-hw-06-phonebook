@@ -11,7 +11,7 @@ export const theme = {
           focus: '#dbbc34',
         },
         border: {
-          normal: '#4B0082',
+          normal: '#9235bd',
           valid: 'green',
           invalid: 'red',
         },
